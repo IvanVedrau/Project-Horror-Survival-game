@@ -25,6 +25,7 @@ public class WeaponSwitch : MonoBehaviour
     private AudioSource audioPlayer;
     public AudioClip[] weaponSounds;
     private bool spraySoundOn = false;
+    public GameObject sprayPanel;
 
     private int currentWeaponID;
     // Start is called before the first frame update
@@ -73,7 +74,7 @@ public class WeaponSwitch : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && sprayPanel.GetComponent<Spray>().sprayAmount > 0.0f)
         {
             if(SaveScript.weaponID == 6 && SaveScript.inventoryOpen == false)
             {
@@ -81,18 +82,17 @@ public class WeaponSwitch : MonoBehaviour
                 {
                     spraySoundOn = true;
                     anim.SetTrigger("Attack");
-                    audioPlayer.clip = weaponSounds[SaveScript.weaponID];
-                    audioPlayer.Play();
-                    audioPlayer.loop = true;
+                    StartCoroutine(StartSpraySound());
                 }
             }
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || sprayPanel.GetComponent<Spray>().sprayAmount <= 0.0f)
         {
             if (SaveScript.weaponID == 6 && SaveScript.inventoryOpen == false)
             {
                 anim.SetTrigger("Release");
                 spraySoundOn = false;
+                audioPlayer.Stop();
                 audioPlayer.loop = false;
 
             }
@@ -150,5 +150,13 @@ public class WeaponSwitch : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("weaponChanged", false);
+    }
+
+    IEnumerator StartSpraySound()
+    {
+        yield return new WaitForSeconds(0.3f);
+        audioPlayer.clip = weaponSounds[SaveScript.weaponID];
+        audioPlayer.Play();
+        audioPlayer.loop = true;
     }
 }
