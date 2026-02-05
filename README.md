@@ -1,4 +1,4 @@
-# 🧟 Project Horror Survival Game
+#  Project Horror Survival Game
 
 A **survival horror game prototype** developed in **Unity** using **C#**.  
 The project focuses on atmosphere, survival mechanics, and core gameplay systems typical of the horror genre.
