@@ -1,4 +1,0 @@
-repository "Horror Survival 2022@IvanVedrau@cloud"
-  path "/"
-    br "/main"
-    co "/main"

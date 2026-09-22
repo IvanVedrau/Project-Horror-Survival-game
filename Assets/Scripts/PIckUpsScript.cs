@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PIckUpsScript : MonoBehaviour
+public class PickUpsScript : MonoBehaviour
 {
     private RaycastHit hit;
     public LayerMask exludeLayers;

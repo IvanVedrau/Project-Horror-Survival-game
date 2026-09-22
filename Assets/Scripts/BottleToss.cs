@@ -81,7 +81,7 @@ public class BottleToss : MonoBehaviour
                 GameObject instantiateBottle = Instantiate(obj, tossDest.position, tossDest.rotation);
 
                 //throwing of a bottle 
-                instantiateBottle.GetComponentInChildren<Rigidbody>().velocity = tossDest.transform.forward * throwPower;
+                instantiateBottle.GetComponentInChildren<Rigidbody>().linearVelocity = tossDest.transform.forward * throwPower;
             }
                 
         }
